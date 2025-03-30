@@ -20,8 +20,19 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
+typedef struct s_pipex
+{
+    int		pipe_fd[2];
+    pid_t	pid1;
+    pid_t	pid2;
+    char	**cmd1;
+	char	**cmd2;
+	char	*path1;
+	char	*path2;
+}	t_pipex;
+
 void	error(char *str);
-void	p_child(char **argv, char **env, int *pipe_fd);
-void	p_parent(char **argv, char **env, int *pipe_fd);
+void	check_files(char **doc);
+void	ft_cmd(t_pipex *pipex, char **argv, char **env);
 
 #endif

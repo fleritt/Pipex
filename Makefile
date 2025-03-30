@@ -15,10 +15,10 @@ NAME = pipex
 LIBFT = libft/libft.a
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3 
 RM = rm
 
-SRC = src/pipex.c
+SRC = src/pipex.c src/utils.c
 OBJ = $(SRC:.c=.o)
 
 all: ${LIBFT} ${NAME}
