@@ -25,19 +25,17 @@ void check_files(char **doc)
 		exit(EXIT_FAILURE);
 	}
 }
-static char	*find_path(char *f_path, char **env)
+static char	**find_path(char **s_path, char **env)
 {
 	int	i;
 
 	i = 0;
-	while(env[i])
-	{
-		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-			{
-				f_path = env[i] + 5;
-				return (f_path);
-			}
+	while(env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
+	if (env[i])
+	{
+		s_path = ft_split(env[i] + 5, ':');
+		return (s_path);
 	}
 	error("the path was not found");
 	exit(EXIT_FAILURE);
@@ -47,14 +45,12 @@ static char	*get_path(char **cmd, char **env)
 {
 	int		i;
 	char	*path;
-	char	*f_path;
 	char	**s_path;
 	char	*temp;
 
 	i = 0;
-	f_path = NULL;
-	f_path = find_path(f_path, env);
-	s_path = ft_split(f_path, ':');
+	s_path = NULL;
+	s_path = find_path(s_path, env);
 	while (s_path[i])
 	{
 		temp = ft_strjoin(s_path[i], "/");
