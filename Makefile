@@ -6,7 +6,7 @@
 #    By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/15 19:49:52 by rfleritt          #+#    #+#              #
-#    Updated: 2025/02/15 19:58:06 by rfleritt         ###   ########.fr        #
+#    Updated: 2025/04/08 21:05:39 by rfleritt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = pipex
 LIBFT = libft/libft.a
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3 
+CFLAGS = -Wall -Werror -Wextra -g3 
 RM = rm
 
 SRC = src/pipex.c src/utils.c

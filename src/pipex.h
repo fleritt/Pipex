@@ -6,7 +6,7 @@
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 19:59:06 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/02/15 23:23:57 by rfleritt         ###   ########.fr       */
+/*   Updated: 2025/04/08 21:39:32 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_pipex
 	char	*path2;
 }	t_pipex;
 
-void	error(char *str);
+void	error(char *str, t_pipex *data);
 void	check_files(char **doc);
 void	ft_cmd(t_pipex *pipex, char **argv, char **env);
 
