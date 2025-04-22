@@ -6,7 +6,7 @@
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 20:44:24 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/04/11 22:49:47 by rfleritt         ###   ########.fr       */
+/*   Updated: 2025/04/22 20:42:59 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,28 @@ static char	*get_path(char **cmd, char **env, t_pipex *data)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_cmd(t_pipex *data, char **argv, char **env)
+void	ft_cmd(t_pipex *data, char **argv, char **env, int p)
 {
 	data->cmd1 = NULL;
 	data->cmd2 = NULL;
 	data->path1 = NULL;
 	data->path2 = NULL;
-	data->cmd1 = ft_split(argv[2], ' ');
-	data->cmd2 = ft_split(argv[3], ' ');
-	if (access(data->cmd1[0], X_OK) == 0)
-		data->path1 = data->cmd1[0];
-	else
-		data->path1 = get_path(data->cmd1, env, data);
-	if (access(data->cmd2[0], X_OK) == 0)
-		data->path2 = data->cmd2[0];	
-	else
-		data->path2 = get_path(data->cmd2, env, data);
+	if(p == 1)
+	{
+		data->cmd1 = ft_split(argv[2], ' ');
+		if (access(data->cmd1[0], X_OK) == 0)
+			data->path1 = data->cmd1[0];
+		else
+			data->path1 = get_path(data->cmd1, env, data);
+	}
+	else if (p == 2)
+	{
+		data->cmd2 = ft_split(argv[3], ' ');
+		if (access(data->cmd2[0], X_OK) == 0)
+			data->path2 = data->cmd2[0];	
+		else
+			data->path2 = get_path(data->cmd2, env, data);
+	}
 }
 
 void	error(char *str, t_pipex *data)
@@ -104,14 +110,14 @@ void	error(char *str, t_pipex *data)
 	if (data->cmd1)
 	{
 		while(data->cmd1[i])
-		free(data->cmd1[i++]);
+			free(data->cmd1[i++]);
 		free(data->cmd1);
 	}
 	i = 0;
 	if (data->cmd2)
 	{
 		while(data->cmd2[i])
-		free(data->cmd2[i++]);
+			free(data->cmd2[i++]);
 		free(data->cmd2);
 	}
 	if (data->path1)

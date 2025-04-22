@@ -6,7 +6,7 @@
 /*   By: rfleritt <rfleritt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:16:54 by rfleritt          #+#    #+#             */
-/*   Updated: 2025/04/08 23:31:54 by rfleritt         ###   ########.fr       */
+/*   Updated: 2025/04/22 20:26:49 by rfleritt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	first_child(t_pipex *data, char **argv, char **env)
 		perror("Error opening input file \n");
 		exit(EXIT_FAILURE);
 	}
-	ft_cmd(data, argv, env);
+	ft_cmd(data, argv, env, 1);
 	dup2(fd, STDIN_FILENO);
 	dup2(data->pipe_fd[1], STDOUT_FILENO);
 	close(data->pipe_fd[0]);
@@ -41,7 +41,7 @@ static void	second_child(t_pipex *data, char **argv, char **env)
 		perror("Error opening output file \n");
 		exit(EXIT_FAILURE);
 	}
-	ft_cmd(data, argv, env);
+	ft_cmd(data, argv, env, 2);
 	dup2(fd, STDOUT_FILENO);
 	dup2(data->pipe_fd[0], STDIN_FILENO);
 	close(data->pipe_fd[0]);
